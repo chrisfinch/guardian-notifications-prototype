@@ -1,0 +1,16 @@
+{
+  "name": "Notifications Panel",
+  "version": "1.0",
+  "manifest_version": 2,
+  "description": "Notifications Prototype",
+  "permissions": ["tabs", "*://*.theguardian.com/*"],
+  "content_scripts": [{
+    "matches": ["*://*.theguardian.com/*"],
+    "js": ["jquery-2.1.0.min.js", "notifications-panel.js"]
+  }],
+  "browser_action": {
+    "default_icon": "icon.png",
+    "default_popup": "prefs.html"
+  },
+  "web_accessible_resources": ["panel.html"]
+}
