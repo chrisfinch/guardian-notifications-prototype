@@ -6,11 +6,18 @@
   "permissions": ["tabs", "*://*.theguardian.com/*"],
   "content_scripts": [{
     "matches": ["*://*.theguardian.com/*"],
-    "js": ["jquery-2.1.0.min.js", "notifications-panel.js"]
+    "js": ["/jquery-2.1.0.min.js", "/notifications-panel.js"]
   }],
   "browser_action": {
     "default_icon": "icon.png",
     "default_popup": "prefs.html"
   },
-  "web_accessible_resources": ["panel.html"]
+  "web_accessible_resources": ["panel.html", "single.html"],
+  "background": {
+    "scripts": [
+        "/jquery-2.1.0.min.js", 
+        "/background.js"
+    ],
+    "persistent": false
+  }
 }
