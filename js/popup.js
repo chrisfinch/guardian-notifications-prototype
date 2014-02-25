@@ -21,4 +21,10 @@
 
 		});
 
+		$("#add-ncb").on("click", function () {
+
+			chrome.runtime.sendMessage({message: "add_notifications_big"}, function(response) {});
+
+		});
+
 	});

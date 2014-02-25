@@ -6,13 +6,14 @@
   "permissions": ["tabs", "*://*.theguardian.com/*"],
   "content_scripts": [{
     "matches": ["*://*.theguardian.com/*"],
-    "js": ["/js/jquery-2.1.0.min.js", "/js/notifications-panel.js"]
+    "css": ["/css/notifications-big.css"],
+    "js": ["/js/jquery-2.1.0.min.js", "/js/notifications-panel.js", "/js/notifications-big.js"]
   }],
   "browser_action": {
     "default_icon": "icon.png",
     "default_popup": "/html/prefs.html"
   },
-  "web_accessible_resources": ["/html/recommended_for_you.html", "/html/followed_by_you.html", "/html/single.html"],
+  "web_accessible_resources": ["/html/recommended_for_you.html", "/html/followed_by_you.html", "/html/single.html", "/html/notifications_big.html"],
   "background": {
     "scripts": [
         "/js/jquery-2.1.0.min.js", 

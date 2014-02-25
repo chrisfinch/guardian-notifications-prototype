@@ -59,6 +59,18 @@ var notificationsPrototype = function () {
 					helpers.scrollTo(self.$fbm);
 				});
 			}
+		},
+
+		add_notifications_big: function () {
+			if (!self.ncb) {
+				self.ncb = true;
+				$.get(chrome.extension.getURL("/html/notifications_big.html"), function (data) {
+					var $cont = $('.js-profile-nav').wrap("<div class='profile-group'></div>").parent();
+					self.$ncb = $(data).appendTo($cont);
+					window.notificationsBig();
+					//helpers.scrollTo(self.$fbm);
+				});				
+			}
 		}	
 	};
 };
