@@ -17,11 +17,10 @@ var backgroundTasks = (function () {
 		},
 
 		get_sync: function (req, callback) {
-			callback(self.sync);
+			callback({state: self.sync, user: config.user});
 		},
 
 		set_sync: function (req, callback) {
-			console.log("set called", req);
 			self.sync = req.sync;
 		}
 

@@ -1,13 +1,24 @@
-var notifications = function (state) {
-	this.state = state || {};
+var notifications = function (config) {
+	this.state = config.state || {};
+	this.user = config.user || "none";
 	this.classes = {
 		notificationsBig: "#nav-notifications",
 		followedByYou: "#proto-panel-followedByYou",
 		recommendedForYou: "#proto-panel-recommendedForYou"
 	};
+	this.parseState();
 };
 
 notifications.prototype = {
+	parseState: function () {
+		for (var key in this.state) {
+			if (this.state[key]) {
+				this.state[key] = false;
+				this["add_"+key]({config:{user:this.user}}); // :-/
+			}
+		}
+	},
+
 	insert_single: function (req) {
 		var self = this;
 		var $cont = self.state.$recommendedForYou.find("ul.collection");
@@ -38,31 +49,31 @@ notifications.prototype = {
 		}
 	},
 
-	add_recommended: function (req) {
+	add_recommendedForYou: function (req) {
 		var self = this;
 		if (!self.state.recommendedForYou) {
 			self.state.recommendedForYou = true;
 			$.get(chrome.extension.getURL("/html/"+req.config.user+"/recommended_for_you.html"), function (data) {
 				$('section.container').first().after(data);
-				self.scrollTo($("#proto-panel-recommendedForYou"));
+				//self.scrollTo($("#proto-panel-recommendedForYou"));
 				self.sync();
 			});
 		}
 	},
 
-	add_followed: function (req) {
+	add_followedByYou: function (req) {
 		var self = this;
 		if (!self.state.followedByYou) {
 			self.state.followedByYou = true;
 			$.get(chrome.extension.getURL("/html/"+req.config.user+"/followed_by_you.html"), function (data) {
 				$('section.container').first().after(data);
-				self.scrollTo($("#proto-panel-followedByYou"));
+				//self.scrollTo($("#proto-panel-followedByYou"));
 				self.sync();					
 			});
 		}
 	},
 
-	add_notifications_big: function (req) {
+	add_notificationsBig: function (req) {
 		var self = this;
 		if (!self.state.notificationsBig) {
 			self.state.notificationsBig = true;

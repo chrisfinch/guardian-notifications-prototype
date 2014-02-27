@@ -11,7 +11,7 @@
 
 		$("#add-rfm").on("click", function () {
 
-			chrome.runtime.sendMessage({message: "add_recommended", target: "content"}, function(response) {});
+			chrome.runtime.sendMessage({message: "add_recommendedForYou", target: "content"}, function(response) {});
 
 			$("#select-stories").attr("disabled", false).val(3).on("change", function (event) {
 				event.preventDefault();
@@ -26,13 +26,13 @@
 
 		$("#add-fbm").on("click", function () {
 
-			chrome.runtime.sendMessage({message: "add_followed", target: "content"}, function(response) {});
+			chrome.runtime.sendMessage({message: "add_followedByYou", target: "content"}, function(response) {});
 
 		});
 
 		$("#add-ncb").on("click", function () {
 
-			chrome.runtime.sendMessage({message: "add_notifications_big", target: "content"}, function(response) {});
+			chrome.runtime.sendMessage({message: "add_notificationsBig", target: "content"}, function(response) {});
 
 		});
 
