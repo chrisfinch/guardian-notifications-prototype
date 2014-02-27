@@ -89,10 +89,16 @@ notifications.prototype = {
 	add_breaking_news: function (req) {
 		var self = this;
 		$.get(chrome.extension.getURL("/html/breaking_news.html"), function (data) {
-			setTimeout(function () {
-				self.state.$breakingNews = $(data).appendTo("body");
-				self.sync();					
-			}, 5000);
+			$(data).appendTo("body");
+			$("#breaking_news .close").on("click", function (event) {
+				console.log("click?");
+				event.preventDefault();
+				$("#breaking_news").addClass("hide");
+				setTimeout(function () {
+					$("#breaking_news").remove(); // Bleeeegggghhhh
+				}, 1500);
+			});
+			self.sync();
 		});
 	},
 
