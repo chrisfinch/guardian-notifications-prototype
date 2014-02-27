@@ -73,6 +73,14 @@ var notificationsPrototype = function () {
 			}
 		},
 
+		add_breaking_news: function () {
+			$.get(chrome.extension.getURL("/html/breaking_news.html"), function (data) {
+				setTimeout(function () {
+					self.$breakingNews = $(data).appendTo("body");
+				}, 5000);
+			});
+		},
+
 		reset_content: function (req) {
 			delete self.ncb;
 			delete self.fbm;

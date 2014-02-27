@@ -36,4 +36,10 @@
 
 		});
 
+		$("#breaking-news").on("click", function () {
+
+			chrome.runtime.sendMessage({message: "add_breaking_news", target: "content"}, function(response) {});
+
+		});
+
 	});
