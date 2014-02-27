@@ -7,13 +7,23 @@
   "content_scripts": [{
     "matches": ["*://*.theguardian.com/*"],
     "css": ["/css/notifications-big.css"],
-    "js": ["/js/jquery-2.1.0.min.js", "/js/notifications-panel.js", "/js/notifications-big.js"]
+    "js": ["/js/jquery-2.1.0.min.js", "/js/content.js", "/js/notifications-big.js"]
   }],
   "browser_action": {
     "default_icon": "icon.png",
     "default_popup": "/html/prefs.html"
   },
-  "web_accessible_resources": ["/html/recommended_for_you.html", "/html/followed_by_you.html", "/html/single.html", "/html/notifications_big.html"],
+  "web_accessible_resources": [
+    "/html/recommended_for_you.html",
+    "/html/simon/recommended_for_you.html",
+    "/html/simon/followed_by_you.html",
+    "/html/nahida/recommended_for_you.html",
+    "/html/nahida/followed_by_you.html",    
+    "/html/guy/recommended_for_you.html",
+    "/html/guy/followed_by_you.html",    
+    "/html/single.html",
+    "/html/notifications_big.html"
+  ],
   "background": {
     "scripts": [
         "/js/jquery-2.1.0.min.js", 

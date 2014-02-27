@@ -11,15 +11,15 @@ var notificationsPrototype = function () {
 	}
 
 	return {
-		insert_single: function () {
+		insert_single: function (req) {
 			var $cont = self.$rfm.find("ul.collection");
 			var el = Math.floor((Math.random()*$cont.find("li").length));
 			var $el = $cont.find("li").eq(el).clone();
 			$cont.append($el);
 		},
 
-		set_stories: function (request) {
-			var n = request.num;
+		set_stories: function (req) {
+			var n = req.num;
 			var $cont = self.$rfm.find("ul.collection");
 			var $lis = $cont.find("li");
 			
@@ -39,10 +39,10 @@ var notificationsPrototype = function () {
 			}
 		},
 
-		add_recommended: function () {
+		add_recommended: function (req) {
 			if (!self.rfm) {
 				self.rfm = true;
-				$.get(chrome.extension.getURL("/html/recommended_for_you.html"), function (data) {
+				$.get(chrome.extension.getURL("/html/"+req.config.user+"/recommended_for_you.html"), function (data) {
 					$('section.container').first().after(data);
 					self.$rfm = $("#proto-panel-rfm");
 					helpers.scrollTo(self.$rfm);
@@ -50,10 +50,10 @@ var notificationsPrototype = function () {
 			}
 		},
 
-		add_followed: function () {
+		add_followed: function (req) {
 			if (!self.fbm) {
 				self.fbm = true;
-				$.get(chrome.extension.getURL("/html/followed_by_you.html"), function (data) {
+				$.get(chrome.extension.getURL("/html/"+req.config.user+"/followed_by_you.html"), function (data) {
 					$('section.container').first().after(data);
 					self.$fbm = $("#proto-panel-fbm");
 					helpers.scrollTo(self.$fbm);
@@ -61,7 +61,7 @@ var notificationsPrototype = function () {
 			}
 		},
 
-		add_notifications_big: function () {
+		add_notifications_big: function (req) {
 			if (!self.ncb) {
 				self.ncb = true;
 				$.get(chrome.extension.getURL("/html/notifications_big.html"), function (data) {
@@ -71,7 +71,19 @@ var notificationsPrototype = function () {
 					//helpers.scrollTo(self.$fbm);
 				});				
 			}
-		}	
+		},
+
+		reset_content: function (req) {
+			delete self.ncb;
+			delete self.fbm;
+			delete self.rfm;
+			if (self.$ncb) self.$ncb.remove();
+			if (self.$fbm) self.$fbm.remove();
+			if (self.$rfm) self.$rfm.remove();
+			$('html, body').animate({
+	            scrollTop: '0px'
+	        });			
+		}
 	};
 };
 
