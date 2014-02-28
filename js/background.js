@@ -43,15 +43,15 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 
 });
 
-var breakingTimer = (function () {
-	var delay = (1000 * 60) * 10;
-	var timer = setTimeout(function () {
-		chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-		  var request = {
-		  	config: config,
-		  	message: "add_breaking_news"
-		  };
-		  chrome.tabs.sendMessage(tabs[0].id, request, function (response) {});
-		});		
-	}, delay);
-})();
+// var breakingTimer = (function () {
+// 	var delay = (1000 * 60) * 10;
+// 	var timer = setTimeout(function () {
+// 		chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+// 		  var request = {
+// 		  	config: config,
+// 		  	message: "add_breaking_news"
+// 		  };
+// 		  chrome.tabs.sendMessage(tabs[0].id, request, function (response) {});
+// 		});		
+// 	}, delay);
+// })();

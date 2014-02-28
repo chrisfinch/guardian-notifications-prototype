@@ -89,16 +89,20 @@ notifications.prototype = {
 	add_breaking_news: function (req) {
 		var self = this;
 		$.get(chrome.extension.getURL("/html/breaking_news.html"), function (data) {
-			$(data).appendTo("body");
-			$("#breaking_news .close").on("click", function (event) {
-				console.log("click?");
-				event.preventDefault();
-				$("#breaking_news").addClass("hide");
-				setTimeout(function () {
-					$("#breaking_news").remove(); // Bleeeegggghhhh
-				}, 1500);
-			});
-			self.sync();
+			
+			var delay = (1000 * 60) * 10;
+
+			setTimeout(function () {
+				$(data).appendTo("body");
+				$("#breaking_news .close").on("click", function (event) {
+					event.preventDefault();
+					$("#breaking_news").addClass("hide");
+					setTimeout(function () {
+						$("#breaking_news").remove(); // Bleeeegggghhhh
+					}, 1500);
+				});
+				self.sync();
+			}, delay);
 		});
 	},
 
