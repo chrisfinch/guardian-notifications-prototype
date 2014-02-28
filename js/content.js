@@ -77,8 +77,8 @@ notifications.prototype = {
 		var self = this;
 		if (!self.state.notificationsBig) {
 			self.state.notificationsBig = true;
-			$.get(chrome.extension.getURL("/html/notifications_big.html"), function (data) {
-				var $cont = $('.js-profile-nav').wrap("<div class='profile-group'></div>").parent();
+			$.get(chrome.extension.getURL("/html/notifications.html"), function (data) {
+				var $cont = $('.js-profile-nav').addClass("nav-profile").wrap("<div class='identity-group'></div>").parent();
 				$(data).appendTo($cont);
 				window.notificationsBig();
 				self.sync();

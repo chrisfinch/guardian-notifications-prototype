@@ -6,7 +6,7 @@
   "permissions": ["tabs", "*://*.theguardian.com/*"],
   "content_scripts": [{
     "matches": ["*://*.theguardian.com/*"],
-    "css": ["/css/content.css", "/css/notifications-big.css"],
+    "css": ["/css/content.css", "/css/notifications.css"],
     "js": ["/js/jquery-2.1.0.min.js", "/js/content.js", "/js/notifications-big.js"]
   }],
   "browser_action": {
@@ -29,7 +29,7 @@
     "/html/sammy-lee/recommended_for_you.html",
     "/html/sammy-lee/followed_by_you.html",            
     "/html/single.html",
-    "/html/notifications_big.html",
+    "/html/notifications.html",
     "/html/breaking_news.html",
     "/img/guardian_logo.png"
   ],

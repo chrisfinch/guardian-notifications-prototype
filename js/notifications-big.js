@@ -9,7 +9,10 @@ window.notificationsBig = function () {
 	$(".js-notifications-link").on("click", function (e) {
 		event.preventDefault();
 		$(".nav-notifications__menu").toggle();
-		$(".profile-group").toggleClass("active");
+		$(".nav-notifications").toggleClass("active");
+
+		$(".nav-profile-menu").hide();
+		$(".nav-profile").removeClass("active");
 	});
 
 	$(".js-mark-all-read").on("click", function (e) {
